@@ -9,11 +9,12 @@ function getComputerChoice(){
     }
 }
 
-function playRound(playerSelection, computerSelection){
-   let CS = computerSelection.toLowerCase();
-   let PS = playerSelection.toLowerCase();
-  
-if(PS === CS){
+function playRound(){
+   let CS = getComputerChoice();
+   let PS = prompt().toLowerCase();
+   console.log(CS)
+   console.log(PS)
+if(PS == CS){
         return "tie";
     }else if(PS == "rock" && CS == "scissors"){
         return "win";
@@ -30,29 +31,38 @@ if(PS === CS){
     }
 }
 
-function game(playerSelection, computerSelection){
+function game(){
     let PlayerScore = 0;
     let ComputerScore = 0;
+
     for (let i = 0; i < 5; i++){
-        let result = playRound(playerSelection, computerSelection);
-        
-        if (result === "tie") {
+        let result = playRound();
+        if (result == "tie") {
          i--;
-        } else if (result === "win"){
+         console.log("Round was a tie")
+         console.log("Player Score: %d", PlayerScore)
+         console.log("Computer Score: %d", ComputerScore)
+        } else if (result == "win"){
             PlayerScore ++;
+            console.log("Player won!")
+            console.log("Player Score: %d", PlayerScore)
+            console.log("Computer Score: %d", ComputerScore)
+
         } else{
             ComputerScore ++;
+            console.log("Computer won!")
+            console.log("Player Score: %d", PlayerScore)
+            console.log("Computer Score: %d", ComputerScore)
         }
     }
     
     if(PlayerScore > ComputerScore){
-        return "Player wins!"
-    }else if (PlayerScore > ComputerScore){
-        return "Computer wins!"
+        return console.log("Player wins, %d to %d",PlayerScore,ComputerScore)
+    }else if (PlayerScore < ComputerScore){
+        return console.log("Computer wins %d to %d!",ComputerScore,PlayerScore)
     }else{
-        return "Tie."
+        return console.log("Tied %d to %d",PlayerScore)
     }
 }
-const playerSelection = "Paper";
-const computerSelection = getComputerChoice();
-console.log(game(playerSelection,computerSelection));
+
+console.log(game());
